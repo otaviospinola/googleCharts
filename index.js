@@ -21,7 +21,7 @@ function columnMap(sheet){
 }
 
 app.get('/data', async (req, res) => {
-
+    res.header('X-FRAME-OPTIONS', 'ALLOW-FROM ' + req.query.domain)
     let options = {
         id: 7409111034816388,
         queryParameters: {        
