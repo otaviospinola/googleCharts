@@ -3,8 +3,10 @@ const app = express()
 const path = require('path');
 const cors = require('cors')
 const client = require('smartsheet');
+const helmet = require('helmet');
 
 app.use(cors())
+app.use(helmet.frameguard({ action: 'SAMEORIGIN' }));
 app.set('view engine', 'ejs')
 
 const ss = client.createClient({accessToken: process.env.ACCESS_TOKEN})
