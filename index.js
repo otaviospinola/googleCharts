@@ -6,7 +6,11 @@ const client = require('smartsheet');
 const helmet = require('helmet');
 
 app.use(cors())
-app.use(helmet.frameguard({ action: 'SAMEORIGIN' }));
+app.use(
+    helmet({
+      contentSecurityPolicy: false,
+    })
+  );
 app.set('view engine', 'ejs')
 
 const ss = client.createClient({accessToken: process.env.ACCESS_TOKEN})
@@ -21,7 +25,7 @@ function columnMap(sheet){
 }
 
 app.get('/data', async (req, res) => {
-    res.header('X-FRAME-OPTIONS', 'ALLOW-FROM ' + req.query.domain)
+    res.header('Content-Security-Policy', "default-src *  data: blob: filesystem: about: ws: wss: 'unsafe-inline' 'unsafe-eval' 'unsafe-dynamic'; script-src * data: blob: 'unsafe-inline' 'unsafe-eval'; connect-src * data: blob: 'unsafe-inline'; img-src * data: blob: 'unsafe-inline'; frame-src * data: blob: ; style-src * data: blob: 'unsafe-inline'; font-src * data: blob: 'unsafe-inline';")
     let options = {
         id: 7409111034816388,
         queryParameters: {        
