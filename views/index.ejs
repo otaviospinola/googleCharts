@@ -39,18 +39,13 @@
           'chartType': 'BarChart',
           'containerId': 'barchart',
           'options': {
-            'width': 600,
-            'height': 500,
             'isStacked': 'percent' 
           }
         });
         var chart2 = new google.visualization.ChartWrapper({
           'chartType': 'PieChart',
           'containerId': 'dunut-chart',
-          'options': {
-            'width': 600,
-            'height': 500,
-          }
+          'view': {'columns': [0,2]}
         });
         dashboard.bind([slicer, slicer2], [chart,chart2])
 
@@ -60,24 +55,17 @@
   </head>
   <body>
     <h1 class="text-center">Dashboard Interativo <span class="badge bg-primary">by TaskIT</span></h1>
-    <!-- <h4 class="text-center display-5">Dashboard Interativo
-      <small class="text-muted">by TaskIT</small></h4> -->
     <hr>
     <div class="container"  id="dashboard_div">
-      <div class="row align-items-start">
-        <div class="col">
-            <div id="slicer"></div>
-        </div>
-        <div class="col">
-          <div id="slicer-2"></div>
+      <div class="row justify-content-between">
+        <div id="slicer" class="col-4"></div>
+        <div id="slicer-2" class="col-4" ></div>
       </div>
-        <div class="col">
-          <div id="barchart"></div>
-        </div>
-        <div class="col">
-          <div id="dunut-chart"></div>
-        </div>
+      <div class="h-75 row">
+        <div id="barchart" class="col"></div>
+        <div id="dunut-chart" class="col"></div>
       </div>
+    </div>
     </div>
   </body>
 </html>
